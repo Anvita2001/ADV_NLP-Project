@@ -1,0 +1,151 @@
+==========================================
+SLURM_JOB_ID = 784040
+SLURM_NODELIST = gnode020
+SLURM_JOB_GPUS = 0
+==========================================
++ cp configs/cbert_jigsaw_attention_based.config run.config
++ /home2/tgv2002/miniconda3/envs/py37/bin/python3 attn_cls_wd.py
+/home2/tgv2002/miniconda3/envs/py37/lib/python3.9/site-packages/torch/cuda/__init__.py:83: UserWarning: CUDA initialization: CUDA unknown error - this may be due to an incorrectly set up environment, e.g. changing env variable CUDA_VISIBLE_DEVICES after program start. Setting the available devices to be zero. (Triggered internally at  /opt/conda/conda-bld/pytorch_1659484775609/work/c10/cuda/CUDAFunctions.cpp:109.)
+  return torch._C._cuda_getDeviceCount() > 0
+10/27/2022 18:26:45 - INFO - pytorch_pretrained_bert.modeling -   loading archive file pytorch_pretrained_bert/bert-base-uncased.tar.gz
+10/27/2022 18:26:45 - INFO - pytorch_pretrained_bert.modeling -   extracting archive file pytorch_pretrained_bert/bert-base-uncased.tar.gz to temp dir /tmp/tmpxgkf648m
+10/27/2022 18:26:48 - INFO - pytorch_pretrained_bert.modeling -   Model config {
+  "attention_probs_dropout_prob": 0.1,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "max_position_embeddings": 512,
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "type_vocab_size": 2,
+  "vocab_size": 30522
+}
+
+10/27/2022 18:26:51 - INFO - pytorch_pretrained_bert.modeling -   Weights from pretrained model not used in BertForMaskedLM: ['cls.seq_relationship.weight', 'cls.seq_relationship.bias']
+cpu
+Traceback (most recent call last):
+  File "/home2/tgv2002/MLM_transfer/attn_cls_wd.py", line 6, in <module>
+    from rnnattn_wd import RNNAttnCls
+  File "/home2/tgv2002/MLM_transfer/rnnattn_wd.py", line 26, in <module>
+    model.cuda()
+  File "/home2/tgv2002/miniconda3/envs/py37/lib/python3.9/site-packages/torch/nn/modules/module.py", line 689, in cuda
+    return self._apply(lambda t: t.cuda(device))
+  File "/home2/tgv2002/miniconda3/envs/py37/lib/python3.9/site-packages/torch/nn/modules/module.py", line 579, in _apply
+    module._apply(fn)
+  File "/home2/tgv2002/miniconda3/envs/py37/lib/python3.9/site-packages/torch/nn/modules/module.py", line 579, in _apply
+    module._apply(fn)
+  File "/home2/tgv2002/miniconda3/envs/py37/lib/python3.9/site-packages/torch/nn/modules/module.py", line 579, in _apply
+    module._apply(fn)
+  File "/home2/tgv2002/miniconda3/envs/py37/lib/python3.9/site-packages/torch/nn/modules/module.py", line 602, in _apply
+    param_applied = fn(param)
+  File "/home2/tgv2002/miniconda3/envs/py37/lib/python3.9/site-packages/torch/nn/modules/module.py", line 689, in <lambda>
+    return self._apply(lambda t: t.cuda(device))
+  File "/home2/tgv2002/miniconda3/envs/py37/lib/python3.9/site-packages/torch/cuda/__init__.py", line 217, in _lazy_init
+    torch._C._cuda_init()
+RuntimeError: CUDA unknown error - this may be due to an incorrectly set up environment, e.g. changing env variable CUDA_VISIBLE_DEVICES after program start. Setting the available devices to be zero.
++ bash scripts/attention_based/preprocess_jigsaw_attention_based.sh
++ cp configs/cbert_jigsaw_attention_based.config run.config
++ PROCESSED_DATA_DIR=processed_data_attention_based
++ python3 preprocess_attention_based.py raw_data/jigsaw/sentiment.train.0 label jigsaw.train.0 jigsaw processed_data_attention_based
+/home2/tgv2002/miniconda3/envs/py37/lib/python3.9/site-packages/torch/cuda/__init__.py:83: UserWarning: CUDA initialization: CUDA unknown error - this may be due to an incorrectly set up environment, e.g. changing env variable CUDA_VISIBLE_DEVICES after program start. Setting the available devices to be zero. (Triggered internally at  /opt/conda/conda-bld/pytorch_1659484775609/work/c10/cuda/CUDAFunctions.cpp:109.)
+  return torch._C._cuda_getDeviceCount() > 0
+cpu
+No available model such as pytorch_pretrained_cls/jigsaw.attn.cbert.pkl!, Error: [Errno 2] No such file or directory: 'pytorch_pretrained_cls/jigsaw.attn.cbert.pkl'
++ python3 preprocess_attention_based.py raw_data/jigsaw/sentiment.dev.0 label jigsaw.dev.0 jigsaw processed_data_attention_based
+/home2/tgv2002/miniconda3/envs/py37/lib/python3.9/site-packages/torch/cuda/__init__.py:83: UserWarning: CUDA initialization: CUDA unknown error - this may be due to an incorrectly set up environment, e.g. changing env variable CUDA_VISIBLE_DEVICES after program start. Setting the available devices to be zero. (Triggered internally at  /opt/conda/conda-bld/pytorch_1659484775609/work/c10/cuda/CUDAFunctions.cpp:109.)
+  return torch._C._cuda_getDeviceCount() > 0
+cpu
+No available model such as pytorch_pretrained_cls/jigsaw.attn.cbert.pkl!, Error: [Errno 2] No such file or directory: 'pytorch_pretrained_cls/jigsaw.attn.cbert.pkl'
++ python3 preprocess_attention_based.py raw_data/jigsaw/sentiment.test.0 label jigsaw.test.0 jigsaw processed_data_attention_based
+/home2/tgv2002/miniconda3/envs/py37/lib/python3.9/site-packages/torch/cuda/__init__.py:83: UserWarning: CUDA initialization: CUDA unknown error - this may be due to an incorrectly set up environment, e.g. changing env variable CUDA_VISIBLE_DEVICES after program start. Setting the available devices to be zero. (Triggered internally at  /opt/conda/conda-bld/pytorch_1659484775609/work/c10/cuda/CUDAFunctions.cpp:109.)
+  return torch._C._cuda_getDeviceCount() > 0
+cpu
+No available model such as pytorch_pretrained_cls/jigsaw.attn.cbert.pkl!, Error: [Errno 2] No such file or directory: 'pytorch_pretrained_cls/jigsaw.attn.cbert.pkl'
++ python3 preprocess_attention_based.py raw_data/jigsaw/sentiment.train.1 label jigsaw.train.1 jigsaw processed_data_attention_based
+/home2/tgv2002/miniconda3/envs/py37/lib/python3.9/site-packages/torch/cuda/__init__.py:83: UserWarning: CUDA initialization: CUDA unknown error - this may be due to an incorrectly set up environment, e.g. changing env variable CUDA_VISIBLE_DEVICES after program start. Setting the available devices to be zero. (Triggered internally at  /opt/conda/conda-bld/pytorch_1659484775609/work/c10/cuda/CUDAFunctions.cpp:109.)
+  return torch._C._cuda_getDeviceCount() > 0
+cpu
+No available model such as pytorch_pretrained_cls/jigsaw.attn.cbert.pkl!, Error: [Errno 2] No such file or directory: 'pytorch_pretrained_cls/jigsaw.attn.cbert.pkl'
++ python3 preprocess_attention_based.py raw_data/jigsaw/sentiment.dev.1 label jigsaw.dev.1 jigsaw processed_data_attention_based
+/home2/tgv2002/miniconda3/envs/py37/lib/python3.9/site-packages/torch/cuda/__init__.py:83: UserWarning: CUDA initialization: CUDA unknown error - this may be due to an incorrectly set up environment, e.g. changing env variable CUDA_VISIBLE_DEVICES after program start. Setting the available devices to be zero. (Triggered internally at  /opt/conda/conda-bld/pytorch_1659484775609/work/c10/cuda/CUDAFunctions.cpp:109.)
+  return torch._C._cuda_getDeviceCount() > 0
+cpu
+No available model such as pytorch_pretrained_cls/jigsaw.attn.cbert.pkl!, Error: [Errno 2] No such file or directory: 'pytorch_pretrained_cls/jigsaw.attn.cbert.pkl'
++ python3 preprocess_attention_based.py raw_data/jigsaw/sentiment.test.1 label jigsaw.test.1 jigsaw processed_data_attention_based
+/home2/tgv2002/miniconda3/envs/py37/lib/python3.9/site-packages/torch/cuda/__init__.py:83: UserWarning: CUDA initialization: CUDA unknown error - this may be due to an incorrectly set up environment, e.g. changing env variable CUDA_VISIBLE_DEVICES after program start. Setting the available devices to be zero. (Triggered internally at  /opt/conda/conda-bld/pytorch_1659484775609/work/c10/cuda/CUDAFunctions.cpp:109.)
+  return torch._C._cuda_getDeviceCount() > 0
+cpu
+No available model such as pytorch_pretrained_cls/jigsaw.attn.cbert.pkl!, Error: [Errno 2] No such file or directory: 'pytorch_pretrained_cls/jigsaw.attn.cbert.pkl'
++ rm processed_data_attention_based/jigsaw/train.data.label
+rm: cannot remove 'processed_data_attention_based/jigsaw/train.data.label': No such file or directory
++ rm processed_data_attention_based/jigsaw/dev.data.label
+rm: cannot remove 'processed_data_attention_based/jigsaw/dev.data.label': No such file or directory
++ rm processed_data_attention_based/jigsaw/test.data.label
+rm: cannot remove 'processed_data_attention_based/jigsaw/test.data.label': No such file or directory
++ cat 'processed_data_attention_based/jigsaw/jigsaw.train.*.data.label'
+scripts/attention_based/preprocess_jigsaw_attention_based.sh: line 13: processed_data_attention_based/jigsaw/train.data.label: No such file or directory
++ cat 'processed_data_attention_based/jigsaw/jigsaw.dev.*.data.label'
+scripts/attention_based/preprocess_jigsaw_attention_based.sh: line 14: processed_data_attention_based/jigsaw/dev.data.label: No such file or directory
++ cat 'processed_data_attention_based/jigsaw/jigsaw.test.*.data.label'
+scripts/attention_based/preprocess_jigsaw_attention_based.sh: line 15: processed_data_attention_based/jigsaw/test.data.label: No such file or directory
++ /home2/tgv2002/miniconda3/envs/py37/bin/python3 shuffle.py processed_data_attention_based/jigsaw/train.data.label
+Traceback (most recent call last):
+  File "/home2/tgv2002/MLM_transfer/shuffle.py", line 3, in <module>
+    f=open(sys.argv[1],'r')
+FileNotFoundError: [Errno 2] No such file or directory: 'processed_data_attention_based/jigsaw/train.data.label'
++ /home2/tgv2002/miniconda3/envs/py37/bin/python3 shuffle.py processed_data_attention_based/jigsaw/dev.data.label
+Traceback (most recent call last):
+  File "/home2/tgv2002/MLM_transfer/shuffle.py", line 3, in <module>
+    f=open(sys.argv[1],'r')
+FileNotFoundError: [Errno 2] No such file or directory: 'processed_data_attention_based/jigsaw/dev.data.label'
++ cp processed_data_attention_based/jigsaw/train.data.label.shuffle processed_data_attention_based/jigsaw/train.data.label
+cp: cannot stat 'processed_data_attention_based/jigsaw/train.data.label.shuffle': No such file or directory
++ cp processed_data_attention_based/jigsaw/dev.data.label.shuffle processed_data_attention_based/jigsaw/dev.data.label
+cp: cannot stat 'processed_data_attention_based/jigsaw/dev.data.label.shuffle': No such file or directory
++ PROJECTPATH=/home2/tgv2002/MLM_transfer/
++ cp configs/bert_jigsaw_attention_based.config run.config
++ PYTHONPATH=/home2/tgv2002/MLM_transfer/
++ python3 fine_tune_bert.py
+/home2/tgv2002/miniconda3/envs/py37/lib/python3.9/site-packages/torch/cuda/__init__.py:83: UserWarning: CUDA initialization: CUDA unknown error - this may be due to an incorrectly set up environment, e.g. changing env variable CUDA_VISIBLE_DEVICES after program start. Setting the available devices to be zero. (Triggered internally at  /opt/conda/conda-bld/pytorch_1659484775609/work/c10/cuda/CUDAFunctions.cpp:109.)
+  return torch._C._cuda_getDeviceCount() > 0
+10/27/2022 18:27:09 - INFO - dataloader -   device cpu n_gpu 0 distributed training False
+Traceback (most recent call last):
+  File "/home2/tgv2002/MLM_transfer/fine_tune_bert.py", line 100, in <module>
+    main()
+  File "/home2/tgv2002/MLM_transfer/fine_tune_bert.py", line 29, in main
+    args, train_dataloader, t_total, device, n_gpu = load_data()
+  File "/home2/tgv2002/MLM_transfer/dataloader.py", line 253, in load_data
+    raise ValueError("Task not found: %s" % (task_name))
+ValueError: Task not found: jigsaw
++ cp configs/cbert_jigsaw_attention_based.config run.config
++ PYTHONPATH=/home2/tgv2002/MLM_transfer/
++ python3 fine_tune_cbert.py
+/home2/tgv2002/miniconda3/envs/py37/lib/python3.9/site-packages/torch/cuda/__init__.py:83: UserWarning: CUDA initialization: CUDA unknown error - this may be due to an incorrectly set up environment, e.g. changing env variable CUDA_VISIBLE_DEVICES after program start. Setting the available devices to be zero. (Triggered internally at  /opt/conda/conda-bld/pytorch_1659484775609/work/c10/cuda/CUDAFunctions.cpp:109.)
+  return torch._C._cuda_getDeviceCount() > 0
+10/27/2022 18:27:15 - INFO - dataloader -   device cpu n_gpu 0 distributed training False
+Traceback (most recent call last):
+  File "/home2/tgv2002/MLM_transfer/fine_tune_cbert.py", line 163, in <module>
+    main()
+  File "/home2/tgv2002/MLM_transfer/fine_tune_cbert.py", line 36, in main
+    args, train_dataloader, t_total, device, n_gpu = load_data()
+  File "/home2/tgv2002/MLM_transfer/dataloader.py", line 253, in load_data
+    raise ValueError("Task not found: %s" % (task_name))
+ValueError: Task not found: jigsaw
++ PYTHONPATH=/home2/tgv2002/MLM_transfer/
++ python3 fine_tune_cbert_w_cls.py
+Traceback (most recent call last):
+  File "/home2/tgv2002/MLM_transfer/fine_tune_cbert_w_cls.py", line 20, in <module>
+    from test_tools.yang_test_tool.cnntext_wd import bert_embeddings, tokenizer
+  File "/home2/tgv2002/MLM_transfer/test_tools/yang_test_tool/cnntext_wd.py", line 28, in <module>
+    model = load_model(cbert_name)
+  File "/home2/tgv2002/MLM_transfer/test_tools/yang_test_tool/cnntext_wd.py", line 23, in load_model
+    model = torch.load(weights_path)
+  File "/home2/tgv2002/miniconda3/envs/py37/lib/python3.9/site-packages/torch/serialization.py", line 699, in load
+    with _open_file_like(f, 'rb') as opened_file:
+  File "/home2/tgv2002/miniconda3/envs/py37/lib/python3.9/site-packages/torch/serialization.py", line 230, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+  File "/home2/tgv2002/miniconda3/envs/py37/lib/python3.9/site-packages/torch/serialization.py", line 211, in __init__
+    super(_open_file, self).__init__(open(name, mode))
+FileNotFoundError: [Errno 2] No such file or directory: 'pytorch_pretrained_bert/jigsaw/CBertForMaskedLM_jigsaw_epoch_10_attention_based'
