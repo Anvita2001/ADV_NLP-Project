@@ -11,7 +11,7 @@ Note that the code in both cases includes changes which were made to previous im
 
 ### TemplateBased
 
-* Detailed instructions for the execution of code are explained [here](PLACE README LINK HERE). 
+* Detailed instructions for the execution of code are explained [here]https://github.com/lijuncen/Sentiment-and-Style-Transfer/blob/master/README.md. 
 * All necessary model checkpoints, processed data can be accessed within the code of the repository itself.
 
 ### Mask and Infill
