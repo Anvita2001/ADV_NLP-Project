@@ -1,7 +1,7 @@
 VOCAB_DIRNAME = 'vocabularies' 
 import pickle
 import numpy as np
-from condbert import CondBertRewriter
+from condbert import CondBert
 from choosers import EmbeddingSimilarityChooser
 from multiword.masked_token_predictor_bert import MaskedTokenPredictorBert
 import torch
