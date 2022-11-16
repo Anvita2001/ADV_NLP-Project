@@ -20,6 +20,12 @@ Note that the code in both cases includes changes which were made to previous im
 * Obtained (and supplementary) model checkpoints can be viewed [here](https://drive.google.com/drive/folders/1Zd1v1GSS0FnovogZ88eF3h4k1aPvI-Ve?usp=sharing).
 * Processed training data can be viewed [here](https://drive.google.com/drive/folders/1hfl89fo2Su_r_cN_VlzKiaXyt81MUjtB?usp=sharing).
 
-## Metrics
+## Actual Approach
+
+### CondBERT    
+
+* For executing the entire pipeline, (based on the vocabulary and scores pre-computed), the script `condbert_inference.py` should be executed by the command `python3 condbert_inference.py`.
+
+## Evaluation - Metrics
 
 * Instructions for the execution of code for calculating metrics, can be found [here](https://github.com/Anvita2001/ADV_NLP-Project/tree/main/metric#readme). 
