@@ -21,16 +21,6 @@ class LR_classifier:
                     corpus_norm=[' '.join[w]]
         return corpus_tox,corpus_norm
 
-    def logistic_Regression(corpus_tox,corpus_norm):
-        pipe = make_pipeline(CountVectorizer(), LogisticRegression(max_iter=1000))
-        X_train = corpus_tox + corpus_norm
-        y_train = [1] * len(corpus_tox) + [0] * len(corpus_norm)
-        pipe.fit(X_train, y_train)
-        coefs = pipe[1].coef_[0]
-        coefs.shape
-        word2coef = {w: coefs[idx] for w, idx in pipe[0].vocabulary_.items()}
-        with open('vocabularies/word2coef.pkl', 'wb') as f:
-            pickle.dump(word2coef, f)
 
 import numpy as np
 
