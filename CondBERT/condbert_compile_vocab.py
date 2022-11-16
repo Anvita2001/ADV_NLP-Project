@@ -3,7 +3,7 @@ import pickle
 import numpy as np
 from condbert import CondBert
 from choosers import EmbeddingSimilarityChooser
-from multiword.masked_token_predictor_bert import MaskedTokenPredictorBert
+from multiword.masked_predictor import MaskedPredictor
 import torch
 import os
 from transformers import BertTokenizer, BertForMaskedLM
@@ -43,7 +43,7 @@ tokenizer = BertTokenizer.from_pretrained(model_name)
 model = BertForMaskedLM.from_pretrained(model_name)
 
 
-predictor = MaskedTokenPredictorBert(model, tokenizer, max_len=250, device=device, label=0, contrast_penalty=0.0, logits_postprocessor=adjust_logits)
+predictor = MaskedPredictor(model, tokenizer, max_len=250, device=device, label=0, contrast_penalty=0.0, logits_postprocessor=adjust_logits)
 
 editor = CondBertRewriter(
     model=model,
