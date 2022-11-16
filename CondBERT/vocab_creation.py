@@ -1,7 +1,7 @@
 VOCAB_DIRNAME = 'vocabularies' 
 neg_out_name = VOCAB_DIRNAME + '/negative-words.txt'
 pos_out_name = VOCAB_DIRNAME + '/positive-words.txt'
-
+from util import *
 
 from transformers import BertTokenizer
 import numpy as np
@@ -28,7 +28,5 @@ class vocabulary():
 
     corpus_tox,corpus_norm=LR_classifier.cleaning_corpus(c,tox_corpus_path,norm_corpus_path)
     writing_files()
-    LR_classifier.logistic_Regression()
-
-
+    logistic_Regression(corpus_tox,corpus_norm)
 
