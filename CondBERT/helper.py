@@ -3,6 +3,11 @@ from sklearn.pipeline import make_pipeline
 from sklearn.linear_model import LogisticRegression
 from sklearn.feature_extraction.text import CountVectorizer
 import pickle
+from utils import *
+from collections import defaultdict
+toxic_counter = defaultdict(lambda: 1)
+nontoxic_counter = defaultdict(lambda: 1)
+from transformers import BertTokenizer
 
 class LR_classifier:
     def __init__(self,c,norm_corpus,tox_corpus):
@@ -36,29 +41,8 @@ class NgramSalienceCalculator():
         norm_count_matrix = self.vectorizer.fit_transform(norm_corpus)
         self.norm_vocab = self.vectorizer.vocabulary_
         self.norm_counts = np.sum(norm_count_matrix, axis=0)
-
-    def salience(self, feature, attribute='tox', lmbda=0.5):
-        assert attribute in ['tox', 'norm']
-        if feature not in self.tox_vocab:
-            tox_count = 0.0
-        else:
-            tox_count = self.tox_counts[0, self.tox_vocab[feature]]
-
-        if feature not in self.norm_vocab:
-            norm_count = 0.0
-        else:
-            norm_count = self.norm_counts[0, self.norm_vocab[feature]]
-
-        if attribute == 'tox':
-            return (tox_count + lmbda) / (norm_count + lmbda)
-        else:
-            return (norm_count + lmbda) / (tox_count + lmbda)
+        self.salience(self, feature,'tox', 0.5)
             
-from collections import defaultdict
-toxic_counter = defaultdict(lambda: 1)
-nontoxic_counter = defaultdict(lambda: 1)
-from transformers import BertTokenizer
-
 class token_toxicity_calc():
     def __init__(self,corpus_tox,corpus_norm):
         model_name = 'bert-base-uncased'
